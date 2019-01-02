@@ -1,13 +1,13 @@
 const mongoose = require('mongoose')
 
-const cat_schema = {                            //the embedded schema
+const cat_schema = {                   //the embedded schema
         location: {type: String},
         startDate: {type: String},
         endDate: {type: String}
     }
 const embedded = new mongoose.Schema(cat_schema)
 
-const schema = {
+const schema = {                       //the document schema
     sportName: {type: String, require: true},
     sportId:{type: Number, require: true},
     participants: [String],

@@ -12,9 +12,6 @@ module.exports = {
     async setCategory(req, res, next){              //get sportId and add another participant
         const {id = null} = req.params
         const {participant = null} = req.body
-            //
-        console.log(id)
-        console.log(participant)
         const condition = {sportId: id}
         const doc = { 
             $push: {participants: participant}
@@ -25,19 +22,26 @@ module.exports = {
         else res.status(404).send("not found")
     },
 
-    async getCategoryByNameLocation(req, res, next){    //get name and location and show the relevant categories
+    async getCategoryByNameLocation(req, res, next){   //get name and location and show the relevant categories
         const { first = null } = req.params
         const { last = null } = req.params
         const { location = null } = req.params
         const name = first+' '+last
-        console.log(name+' '+ location)
 
         const result = await category.find({
             participants: name,
-            "info.location": location
+            "info.location": location           //location is inside the info (embedded) 
         })
 
         if(result) res.json(result)
         else res.status(404).send("not found")
-    } 
+    },
+
+    async showApi(req, res){
+        res.redirect('https://documenter.getpostman.com/view/5698727/RznBLzdL')
+    },
+
+    async fallback(req, res){
+        res.send('Got lost? This is a 404 page')
+    }
 }
