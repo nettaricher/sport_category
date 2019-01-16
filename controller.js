@@ -39,7 +39,7 @@ module.exports = {
 
     async showApi(req, res){
         res.redirect('https://documenter.getpostman.com/view/5698727/RznBLzdL')
-    },
+    },//
 
     async fallback(req, res){
         res.send('Got lost? This is a 404 page')
